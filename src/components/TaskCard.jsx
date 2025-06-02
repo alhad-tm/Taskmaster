@@ -27,13 +27,16 @@ const TaskCard =({ task, onComplete, onDelete })=> {
         </span>
         {hovered && (
           <div className="flex gap-2 ">
-            <button
-              onClick={() => onComplete(task.id)}
-              className="text-green-600 hover:text-green-800 animate-bounce"
-              aria-label="Mark as Completed"
-            >
-              <FaCheckCircle />
-            </button>
+           
+             {task.status !== "Completed" && (
+      <button
+        onClick={() => onComplete(task.id)}
+        className="text-green-600 hover:text-green-800 animate-bounce"
+        aria-label="Mark as Completed"
+      >
+        <FaCheckCircle />
+      </button>
+    )}
             <button
               onClick={() => onDelete(task.id)}
               className="text-red-500 hover:text-red-700 animate-pulse"
