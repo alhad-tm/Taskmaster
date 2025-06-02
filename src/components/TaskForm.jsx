@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const TaskForm=({ onAdd })=> {
+const TaskForm = ({ onAdd }) => {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("Medium");
   const [status, setStatus] = useState("Pending");
@@ -27,7 +27,10 @@ const TaskForm=({ onAdd })=> {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-xl shadow p-4 mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base ">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white dark:bg-slate-800 rounded-xl shadow p-4 mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base "
+    >
       <input
         type="text"
         placeholder="Task Title"
@@ -45,13 +48,21 @@ const TaskForm=({ onAdd })=> {
         required
       />
 
-      <select className="border p-2 rounded " value={priority} onChange={(e) => setPriority(e.target.value)}>
+      <select
+        className="border p-2 rounded "
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+      >
         <option>High</option>
         <option>Medium</option>
         <option>Low</option>
       </select>
 
-      <select className="border p-2 rounded" value={status} onChange={(e) => setStatus(e.target.value)}>
+      <select
+        className="border p-2 rounded"
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+      >
         <option>Pending</option>
         <option>In Progress</option>
         <option>Completed</option>
@@ -65,6 +76,6 @@ const TaskForm=({ onAdd })=> {
       </button>
     </form>
   );
-}
+};
 
-export default TaskForm
+export default TaskForm;

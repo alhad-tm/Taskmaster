@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUserCircle, FaMoon, FaSun, FaBars } from "react-icons/fa";
 
 const Header = ({ onMenuClick }) => {
@@ -53,14 +53,17 @@ const Header = ({ onMenuClick }) => {
 
         {/* User profile */}
         <div className="flex items-center space-x-2">
-          <FaUserCircle className="text-gray-600 dark:text-gray-300" size={24} />
+          <FaUserCircle
+            className="text-gray-600 dark:text-gray-300"
+            size={24}
+          />
           <span className="text-gray-700 dark:text-gray-300 font-medium hidden sm:inline">
-          Alhad
+            Alhad
           </span>
         </div>
       </div>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;

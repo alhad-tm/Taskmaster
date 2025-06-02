@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TaskCard from "./components/TaskCard";
 import TaskForm from "./components/TaskForm";
-
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -22,7 +21,9 @@ export default function App() {
 
   const handleComplete = (id) => {
     setTasks((prev) =>
-      prev.map((task) => (task.id === id ? { ...task, status: "Completed" } : task))
+      prev.map((task) =>
+        task.id === id ? { ...task, status: "Completed" } : task
+      )
     );
   };
 
@@ -31,7 +32,7 @@ export default function App() {
   };
 
   return (
-   <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex flex-col flex-1 ">
         <Header onMenuClick={() => setSidebarOpen(true)} />
@@ -48,9 +49,8 @@ export default function App() {
               />
             ))}
           </div>
-        </main> 
+        </main>
       </div>
     </div>
   );
 }
-

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaTrashAlt, FaCheckCircle } from "react-icons/fa";
 
-const TaskCard =({ task, onComplete, onDelete })=> {
+const TaskCard = ({ task, onComplete, onDelete }) => {
   const [hovered, setHovered] = useState(false);
 
   const priorityColors = {
@@ -11,32 +11,32 @@ const TaskCard =({ task, onComplete, onDelete })=> {
   };
 
   return (
- <div
-  className={`relative bg-white dark:bg-slate-800 rounded-xl shadow-md p-4 transition-all ${
-    task.status === "Completed" ? "opacity-70" : ""
-  }`}
+    <div
+      className={`relative bg-white dark:bg-slate-800 rounded-xl shadow-md p-4 transition-all ${
+        task.status === "Completed" ? "opacity-70" : ""
+      }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Priority Dot */}
       <div className="flex items-center justify-between mb-2">
-  <span className="flex items-center gap-2 font-semibold text-gray-800 dark:text-gray-200">
-
-          <span className={`w-3 h-3 rounded-full ${priorityColors[task.priority]}`}></span>
+        <span className="flex items-center gap-2 font-semibold text-gray-800 dark:text-gray-200">
+          <span
+            className={`w-3 h-3 rounded-full ${priorityColors[task.priority]}`}
+          ></span>
           {task.title}
         </span>
         {hovered && (
           <div className="flex gap-2 ">
-           
-             {task.status !== "Completed" && (
-      <button
-        onClick={() => onComplete(task.id)}
-        className="text-green-600 hover:text-green-800 animate-bounce"
-        aria-label="Mark as Completed"
-      >
-        <FaCheckCircle />
-      </button>
-    )}
+            {task.status !== "Completed" && (
+              <button
+                onClick={() => onComplete(task.id)}
+                className="text-green-600 hover:text-green-800 animate-bounce"
+                aria-label="Mark as Completed"
+              >
+                <FaCheckCircle />
+              </button>
+            )}
             <button
               onClick={() => onDelete(task.id)}
               className="text-red-500 hover:text-red-700 animate-pulse"
@@ -57,7 +57,6 @@ const TaskCard =({ task, onComplete, onDelete })=> {
       </div>
     </div>
   );
-}
+};
 
-
-export default TaskCard
+export default TaskCard;
