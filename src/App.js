@@ -1,39 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TaskCard from "./components/TaskCard";
 import TaskForm from "./components/TaskForm";
 
 export default function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Finish report",
-      priority: "High",
-      status: "Pending",
-      due: "Due in 3 days",
-    },
-    {
-      id: 2,
-      title: "Email team updates",
-      priority: "Medium",
-      status: "In Progress",
-      due: "Due tomorrow",
-    },
-    {
-      id: 3,
-      title: "Plan sprint meeting",
-      priority: "Low",
-      status: "Completed",
-      due: "Due today",
-    },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    const stored = localStorage.getItem("taskmaster-tasks");
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("taskmaster-tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const handleAdd = (task) => {
+    setTasks((prev) => [task, ...prev]);
+  };
 
   const handleComplete = (id) => {
     setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, status: "Completed" } : task
-      )
+      prev.map((task) => (task.id === id ? { ...task, status: "Completed" } : task))
     );
   };
 
@@ -46,17 +33,19 @@ export default function App() {
       <Sidebar />
       <div className="flex flex-col flex-1">
         <Header />
-        <TaskForm/>
-        <main className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {tasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              task={task}
-              onComplete={handleComplete}
-              onDelete={handleDelete}
-            />
+        <main className="p-4">
+          <TaskForm onAdd={handleAdd} />
 
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {tasks.map((task) => (
+              <TaskCard
+                key={task.id}
+                task={task}
+                onComplete={handleComplete}
+                onDelete={handleDelete}
+              />
+            ))}
+          </div>
         </main>
       </div>
     </div>
