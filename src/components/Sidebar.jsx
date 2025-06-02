@@ -19,12 +19,12 @@ const Sidebar=({ isOpen, onClose })=> {
         }`}
       >
         <div className="flex items-center justify-between p-4 ">
-          <h2 className="text-lg font-bold text-cyan-700 dark:text-blue-400">TaskMaster</h2>
+          <h2  className="text-lg font-bold text-cyan-700 dark:text-blue-400">TaskMaster</h2>
           <button onClick={onClose} className="md:hidden text-gray-600 dark:text-gray-300">
             <FaTimes size={20} />
           </button>
         </div>
-        <nav className="flex flex-col p-4 space-y-4 text-gray-700 dark:text-gray-300">
+        <nav onClick={onClose} className="flex flex-col p-4 space-y-4 text-gray-700 dark:text-gray-300">
           <a href="#" className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400">
             <FaHome /> Dashboard
           </a>
