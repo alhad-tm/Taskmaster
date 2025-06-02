@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TaskCard from "./components/TaskCard";
+import TaskForm from "./components/TaskForm";
 
 export default function App() {
   const [tasks, setTasks] = useState([
@@ -45,6 +46,7 @@ export default function App() {
       <Sidebar />
       <div className="flex flex-col flex-1">
         <Header />
+        <TaskForm/>
         <main className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {tasks.map((task) => (
             <TaskCard
@@ -53,6 +55,7 @@ export default function App() {
               onComplete={handleComplete}
               onDelete={handleDelete}
             />
+
           ))}
         </main>
       </div>
