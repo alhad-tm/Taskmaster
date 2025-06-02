@@ -4,7 +4,9 @@ import Header from "./components/Header";
 import TaskCard from "./components/TaskCard";
 import TaskForm from "./components/TaskForm";
 
+
 export default function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [tasks, setTasks] = useState(() => {
     const stored = localStorage.getItem("taskmaster-tasks");
     return stored ? JSON.parse(stored) : [];
@@ -29,11 +31,11 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      <Sidebar />
-      <div className="flex flex-col flex-1">
-        <Header />
-        <main className="p-4">
+   <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="flex flex-col flex-1 ">
+        <Header onMenuClick={() => setSidebarOpen(true)} />
+        <main className="p-4 md:ml-64">
           <TaskForm onAdd={handleAdd} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -46,8 +48,9 @@ export default function App() {
               />
             ))}
           </div>
-        </main>
+        </main> 
       </div>
     </div>
   );
 }
+

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function TaskForm({ onAdd }) {
+const TaskForm=({ onAdd })=> {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("Medium");
   const [status, setStatus] = useState("Pending");
@@ -27,7 +27,7 @@ export default function TaskForm({ onAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow p-4 mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-xl shadow p-4 mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base ">
       <input
         type="text"
         placeholder="Task Title"
@@ -45,7 +45,7 @@ export default function TaskForm({ onAdd }) {
         required
       />
 
-      <select className="border p-2 rounded" value={priority} onChange={(e) => setPriority(e.target.value)}>
+      <select className="border p-2 rounded " value={priority} onChange={(e) => setPriority(e.target.value)}>
         <option>High</option>
         <option>Medium</option>
         <option>Low</option>
@@ -59,10 +59,12 @@ export default function TaskForm({ onAdd }) {
 
       <button
         type="submit"
-        className="bg-blue-900 text-white px-4 py-2 rounded md:col-span-2 hover:bg-sky-950 transition  "
+        className="bg-cyan-700 text-white px-4 py-2 rounded md:col-span-2 hover:bg-cyan-900 transition"
       >
         Add Task
       </button>
     </form>
   );
 }
+
+export default TaskForm
